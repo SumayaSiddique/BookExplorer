@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('wishlist', JSON.stringify(wishlist));
         renderBooks(books);
     };
-
     const renderBooks = (books) => {
         if (books.length === 0) {
             booksList.innerHTML = '<p class="no-books-found">No books found.</p>';
@@ -114,9 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     <i class="fas fa-heart wishlist-icon ${isWishlisted ? 'liked' : ''}"></i>
                 </div>
             `;
+            bookDiv.addEventListener('click', () => {
+                window.location.href = `bookDetails.html?id=${book.id}`;
+            });
 
             const wishlistIcon = bookDiv.querySelector('.wishlist-icon');
-            wishlistIcon.addEventListener('click', () => toggleWishlist(book));
+            wishlistIcon.addEventListener('click', (event) => {
+                event.stopPropagation();
+                toggleWishlist(book);
+            });
 
             booksList.appendChild(bookDiv);
         });

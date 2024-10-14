@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <i class="fas fa-heart wishlist-icon liked" data-id="${book.id}"></i>
                 </div>
             `;
+            bookDiv.addEventListener('click', () => {
+                window.location.href = `bookDetails.html?id=${book.id}`;
+            });
             wishlistContainer.appendChild(bookDiv);
         });
 

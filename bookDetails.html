@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Book Details - Book Explorer</title>
+</head>
+<body>
+    <header>
+    </header>
+
+    <main>
+        <h1 class="main-header"><i class="fas fa-book-reader"></i> Book Details</h1>
+        <h3 class="sub-header">"A room without books is like a body without a soul." - Cicero</h3>
+        <div id="loader" class="loader" style="display: none;"></div> <!-- Loader added here -->
+        <section class="book-details">
+            <div class="book-info">
+                <img src="" alt="Book Cover" class="book-cover">
+                <div class="autor-download-info">
+                    <h2 class="book-title">Book Title</h2>
+                    <div class="book-authors">
+                        <h3>Author(s):</h3>
+                        <div id="authors-list"></div>
+                    </div>
+                    <div class="book-meta">
+                        <p class="download-count">Downloaded <span id="download-count">58362</span> times</p>
+                    </div>
+                </div>
+            </div>
+            <p class="sub-header">Download and enjoy the book in your preferred format:</p>
+            <div class="book-downloads">
+                <a href="" id="download-epub" class="download-button">
+                    <i class="fa fa-book"></i> 
+                    EPUB
+                </a>
+                <a href="" id="download-mobi" class="download-button">
+                    <i class="fa fa-tablet-alt"></i> 
+                    MOBI
+                </a>
+                <a href="" id="download-txt" class="download-button">
+                    <i class="fa fa-file-alt"></i>
+                    TXT
+                </a>
+            </div>
+
+            <div class="explore">
+                <a href="index.html" class="explore-button">Explore Other Books <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+    </main>
+
+    <footer></footer>
+    <script src="./scripts/loadNavbarFooter.js"></script>
+    <script src="./scripts/navbar.js"></script>
+    <script src="./scripts/bookDetails.js"></script>
+</body>
+</html>
+
+
