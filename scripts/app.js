@@ -8,6 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let books = [];
     let totalBooks = '';
     let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const savedSearchQuery = localStorage.getItem('searchQuery') || '';
+    const savedGenre = localStorage.getItem('selectedGenre') || '';
+    searchBar.value = savedSearchQuery;
+    if (savedGenre) {
+        drawerBtn.textContent = savedGenre;
+    }
 
     const fetchBooks = async (page) => {
         try {
@@ -19,8 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
             books = data.results;
             totalBooks = data.count;
             initializeGenres(books);
-            renderBooks(data.results);
-            renderPagination(data.count, books.length);
+            if (savedSearchQuery) {
+                filterBooksBySearch(savedSearchQuery);
+            } else if (savedGenre) {
+                filterBooksByGenre(savedGenre);
+            } else {
+                renderBooks(books);
+                renderPagination(data.count, books.length);
+            }
         } catch (error) {
             booksList.innerHTML = '<p>Error loading books. Please try again later.</p>';
         } finally {
@@ -46,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 drawerBtn.textContent = genre;
                 genreDrawer.classList.add('hidden');
                 filterBooksByGenre(genre);
+
+                localStorage.setItem('selectedGenre', genre);
             });
             genreDrawer.appendChild(genreItem);
         });
@@ -54,12 +68,20 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('drawer-btn').addEventListener('click', () => {
         genreDrawer.classList.toggle('hidden');
     });
-    document.getElementById('clear-btn').addEventListener('click', function () {
-        document.getElementById('search-bar').value = '';
-        document.getElementById('genre-drawer').innerHTML = '';
-        currentPage = 1;
-        fetchBooks(currentPage);
-    });
+
+    const clearBtn = document.getElementById('clear-btn');
+    if (clearBtn) {
+        clearBtn.addEventListener('click', function () {
+            document.getElementById('search-bar').value = '';
+            drawerBtn.textContent = 'Select Genre';
+            document.getElementById('genre-drawer').innerHTML = '';
+            localStorage.removeItem('searchQuery');
+            localStorage.removeItem('selectedGenre');
+            currentPage = 1;
+            fetchBooks(currentPage);
+        });
+    }
+
     const toggleWishlist = (book) => {
         const isWishlisted = wishlist.some(item => item.id === book.id);
         if (isWishlisted) {
@@ -136,13 +158,18 @@ document.addEventListener('DOMContentLoaded', () => {
     searchBar.addEventListener('input', () => {
         currentPage = 1;
         const searchQuery = searchBar.value.toLowerCase();
+        localStorage.setItem('searchQuery', searchQuery);
+        filterBooksBySearch(searchQuery);
+    });
+
+    const filterBooksBySearch = (searchQuery) => {
         const filteredBooks = books.filter(book =>
             book.title.toLowerCase().includes(searchQuery)
         );
         booksList.innerHTML = '';
         renderBooks(filteredBooks);
         renderPagination(filteredBooks.length, books.length);
-    });
+    };
 
     const filterBooksByGenre = (genre) => {
         currentPage = 1;
@@ -156,6 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchBooks(currentPage);
 });
+
 
 
 
