@@ -8,52 +8,36 @@
     <title>Book Explorer</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">Book Explorer</div>
-            <ul class="nav-links">
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#"><i class="fas fa-heart"></i> Wishlist</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <i class="fas fa-bars"></i>
+    <header></header>
+    <main>
+        <!-- Search bar and Genre Filter -->
+        <section class="search-section">
+            <input type="text" id="search-bar" placeholder="Search by title..." />
+            <div class="genre-dropdown-container">
+                <button id="drawer-btn" class="drawer-btn">
+                    Select Genre <i class="fas fa-caret-down"></i>
+                </button>
+                <div id="genre-drawer" class="genre-drawer hidden"></div>
             </div>
-        </nav>
-        <div class="mobile-menu" id="mobile-menu">
-            <div class="close-icon" id="close-icon">
+            <button id="clear-btn" class="clear-btn">
                 <i class="fas fa-times"></i>
-            </div>
-            <ul>
-                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
-                <li><a href="#"><i class="fas fa-heart"></i> Wishlist</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- Search bar and Genre Filter -->
-    <section class="search-section">
-        <input type="text" id="search-bar" placeholder="Search by title..." />
-        <div class="genre-dropdown-container">
-            <button id="drawer-btn" class="drawer-btn">
-                Select Genre <i class="fas fa-caret-down"></i>
             </button>
-            <div id="genre-drawer" class="genre-drawer hidden"></div>
-        </div>
-        <button id="clear-btn" class="clear-btn">
-            <i class="fas fa-times"></i>
-        </button>
-    </section>
+        </section>
 
-    <!-- Books List -->
-    <section class="books-section" id="books-section">
-        <div class="pagination" id="pagination"></div>
-        <div id="loader" class="loader" style="display: none;"></div>
-        <div id="books-list"></div>
-    </section>
+        <!-- Books List -->
+        <section class="books-section" id="books-section">
+            <div class="pagination" id="pagination"></div>
+            <div id="loader" class="loader" style="display: none;"></div>
+            <div id="books-list"></div>
+        </section>
+    </main>
+    <footer></footer>
+    <script src="./scripts/loadNavbarFooter.js"></script>
     <script src="./scripts/navbar.js"></script>
     <script src="./scripts/app.js"></script>
 </body>
 </html>
+
 
 
 
