@@ -11,9 +11,15 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: var(--white);
+  font-family: 'Poppins', sans-serif;
+}
+
+main {
+  flex: 1; 
 }
 
 header {
@@ -38,6 +44,15 @@ header {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
+}
+.wishlist-header{
+  padding: 1rem;
+  text-align: center;
+  color:var(--light-navy);
+}
+.wishlist-subheader{
+  text-align: center;
+  color:var(--light-navy);
 }
 
 .nav-links {
@@ -125,17 +140,22 @@ header {
   padding: 0.5rem;
   font-size: 16px;
   border: 1px solid var(--light-slate);
-  color: var(--light-navy);
+  background-color: var(--white);
+  color: var(--navy);
   border-radius: 4px;
   margin-right: 1rem;
-  color: var(--white);
+  color: var(--light-navy);
   transition: all 0.3s ease-in-out;
 }
 
 .search-section input:focus {
+  background-color: var(--white);
   color: var(--light-navy);
   border-color: var(--green);
   outline: none;
+}
+#search-bar::placeholder {
+  color: var(--slate);
 }
 
 .drawer-btn {
@@ -195,6 +215,7 @@ header {
 
 .clear-btn {
   padding: 0.5rem;
+  border: 1px solid var(-slate);
   background-color: var(--light-slate);
   color: var(--navy);
   border: none;
@@ -220,11 +241,13 @@ header {
   }
 }
 
-.books-section {
+.books-section,
+.wishlist-section {
   padding: 2rem;
 }
 
-.books-section {
+.books-section,
+.wishlist-section {
   position: relative; 
   padding: 20px; 
 }
@@ -251,18 +274,21 @@ header {
       transform: rotate(360deg);
   }
 }
-#books-list {
+#books-list,
+#wishlist{
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 1rem;
   transition: transform 0.3s ease-in-out;
 }
 
-#books-list .book {
+#books-list .book,
+#wishlist .book{
   transition: transform 0.3s ease-in-out;
 }
 
-#books-list .book:hover {
+#books-list .book:hover,
+#wishlist .book:hover{
   transform: scale(1.05);
   cursor: pointer;
 }
@@ -372,6 +398,49 @@ header {
   }
 }
 
+.footer {
+    background-color: var(--light-navy); 
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 16px;
+    color: var(--lightest-slate); 
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    color: var(--slate);
+    font-size: 24px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--green); 
+}
+
+@media (max-width: 768px) {
+    .social-icons {
+        margin-top: 15px;
+    }
+
+    .social-icons a {
+        font-size: 20px;
+        margin: 0 8px;
+    }
+
+    .footer p {
+        font-size: 14px;
+    }
+}
 
 
 
