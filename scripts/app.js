@@ -113,8 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <i class="fas fa-heart wishlist-icon ${isWishlisted ? 'liked' : ''}"></i>
                 </div>
             `;
-            bookDiv.addEventListener('click', () => {
-                window.location.href = `bookDetails.html?id=${book.id}`;
+            bookDiv.addEventListener('click', (event) => {
+                if (!event.target.classList.contains('wishlist-icon')) {
+                    window.location.href = `bookDetails.html?id=${book.id}`;
+                }
             });
 
             const wishlistIcon = bookDiv.querySelector('.wishlist-icon');
